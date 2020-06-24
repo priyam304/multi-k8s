@@ -1,6 +1,9 @@
+language: generic
 sudo: required
 services:
   - docker
+env:
+  - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 before_install:
   - openssl aes-256-cbc -K $encrypted_b2703a2559f3_key -iv $encrypted_b2703a2559f3_iv -in service.json.enc -out service.json -d
   - curl https://sdk.cloud.google.com | bash > /dev/null;
@@ -8,7 +11,7 @@ before_install:
   - gcloud components update kubectl
   - gcloud auth activate-service-account --key-file service.json
   - gcloud config set project multi-k8s-281221
-  - gcloud config set zone us-central1-c
+  - gcloud config set compute/zone us-central1-c
   - gcloud container clusters get-credentials multi-k8s
   - echo "$DOCKER_PASSWORD " | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t priyam304/client-test -f ./client/Dockerfile.dev ./client
