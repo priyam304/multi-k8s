@@ -3,6 +3,7 @@ sudo: required
 services:
   - docker
 env:
+  - SHA=$(git rev-parse HEAD)
   - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 before_install:
   - openssl aes-256-cbc -K $encrypted_b2703a2559f3_key -iv $encrypted_b2703a2559f3_iv -in service.json.enc -out service.json -d
@@ -15,5 +16,11 @@ before_install:
   - gcloud container clusters get-credentials multi-k8s
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t priyam304/client-test -f ./client/Dockerfile.dev ./client
-scritps:
-  - docker run -e CI=true priyam304/client-test npm test 
+scripts:
+  - docker run -e CI=true priyam304/client-test npm test
+
+deployment:
+  provider: script
+  script: bash ./deployment_script.sh 
+  on:
+    branch:master 
