@@ -4,7 +4,8 @@ pipeline{
        
         dockerhub= credentials('dockerhub')
         service=credentials('service')
-        PATH="/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin/:${env.PATH}"
+        USER=credentials('user')
+        PATH="/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin/:/Users/${env.USER}/google-cloud-sdk/bin/gcloud:${env.PATH}"
         
     }
     stages{
