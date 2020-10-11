@@ -37,5 +37,11 @@ pipeline{
                 echo "Test complete"
             }
         }
+        stage('deploy'){
+            steps{
+                sh ./deployment_script.sh
+                echo "deployment script executed"
+            }
+        }
     }
 }
