@@ -16,11 +16,11 @@ pipeline{
                 echo "${env.PATH}"
                 sh '''
                     
-                    curl https://sdk.cloud.google.com | bash > /dev/null;
+                    curl https://sdk.cloud.google.com
                     source $HOME/google-cloud-sdk/path.bash.inc
                     gcloud components update kubectl
                     gcloud auth activate-service-account --key-file $service
-                    gcloud version | bash > /dev/null;
+                    gcloud version;
                     kubectl version
                     gcloud config set project the-devops-project
                     gcloud config set compute/zone us-central1-c
