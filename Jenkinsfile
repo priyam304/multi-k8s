@@ -39,7 +39,7 @@ pipeline{
         }
         stage('deploy'){
             steps{
-                sh ./deployment_script.sh
+                sh './deployment_script.sh'
                 echo "deployment script executed"
             }
         }
