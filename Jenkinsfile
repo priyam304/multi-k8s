@@ -13,7 +13,7 @@ pipeline{
                 echo 'Starting to build docker image'
 
                 sh '''
-                    docker login -u $dockerhub_USR --password $dockerhub_PSW
+                    
                     gcloud components update kubectl
                     gcloud auth activate-service-account --key-file $service
                     gcloud version | bash > /dev/null;
