@@ -12,7 +12,8 @@ pipeline{
         stage('prebuild'){
             steps {
                 echo 'Starting to build docker image'
-
+                echo "${env.USER}"
+                echo "${env.PATH}"
                 sh '''
                     
                     gcloud components update kubectl
