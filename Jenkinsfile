@@ -23,7 +23,7 @@ pipeline{
                     gcloud config set project the-devops-project
                     gcloud config set compute/zone us-central1-c
                     gcloud container clusters get-credentials the-devops-project
-                    echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+                    echo "$dockerhub_USR" | docker login -u "$$dockerhub_PSW" --password-stdin
                     docker build -t priyam304/client-test -f ./client/Dockerfile.dev ./client
                     '''
 
