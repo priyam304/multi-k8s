@@ -16,7 +16,7 @@ pipeline{
                 echo "${env.PATH}"
                 sh '''
                     
-                    curl https://sdk.cloud.google.com
+                    curl https://sdk.cloud.google.com | bash > /dev/null;
                     source $HOME/google-cloud-sdk/path.bash.inc
                     gcloud components update kubectl
                     gcloud auth activate-service-account --key-file $service
