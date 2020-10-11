@@ -31,5 +31,11 @@ pipeline{
                 
             }
         }
+        stage('test'){
+            steps{
+                sh 'docker run -e CI=true priyam304/client-test npm test'
+                echo "Test complete"
+            }
+        }
     }
 }
