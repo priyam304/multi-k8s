@@ -18,9 +18,9 @@ pipeline{
                     source $HOME/google-cloud-sdk/path.bash.inc
                     
                     gcloud components update kubectl
-                    kubectl version
                     gcloud auth activate-service-account --key-file $service
                     gcloud version | bash > /dev/null;
+                    kubectl version
                     gcloud config set project the-devops-project
                     gcloud config set compute/zone us-central1-c
                     gcloud container clusters get-credentials the-devops-project
