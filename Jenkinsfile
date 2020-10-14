@@ -11,11 +11,7 @@ pipeline{
     stages{
         stage('prebuild'){
             steps {
-                echo 'Starting to build docker image'
-                echo "${env.USER}"
-                echo "${env.PATH}"
                 sh '''
-                    
                     curl https://sdk.cloud.google.com | bash > /dev/null;
                     source $HOME/google-cloud-sdk/path.bash.inc
                     gcloud components update kubectl
@@ -34,13 +30,13 @@ pipeline{
         stage('test'){
             steps{
                 sh 'docker run -e CI=true priyam304/client-test npm test'
-                echo "Test complete"
+                echo "Test stage complete!"
             }
         }
         stage('deploy'){
             steps{
                 sh 'sh ./deployment_script.sh'
-                echo "deployment script executed"
+                echo "deployment stage Complete!"
             }
         }
     }
